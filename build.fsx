@@ -1,4 +1,5 @@
 #r @"paket:
+nuget FSharp.Core >= 5.0.0
 nuget Fake.Core.Target
 nuget Fake.Core.ReleaseNotes
 nuget Fake.IO.FileSystem
@@ -9,7 +10,7 @@ nuget Fake.Tools.Git //"
 
 #if !FAKE
 #load "./.fake/build.fsx/intellisense.fsx"
-#r "netstandard" // Temp fix for https://github.com/fsharp/FAKE/issues/1985
+// #r "netstandard" // Temp fix for https://github.com/fsharp/FAKE/issues/1985
 #endif
 
 
@@ -105,7 +106,7 @@ Target.create "CleanDocs" (fun _ ->
 // Build library & test project
 
 Target.create "Build" (fun _ ->
-    for framework in ["netcoreapp3.1"] do
+    for framework in ["netcoreapp3.1"; "net5.0"] do
         [
             "src/FsLex/fslexlex.fs"
             "src/FsLex/fslexpars.fs"

@@ -6,7 +6,7 @@ nuget Fake.DotNet.Cli //"
 
 #if !FAKE
 #load "./.fake/build.fsx/intellisense.fsx"
-#r "netstandard" // Temp fix for https://github.com/fsharp/FAKE/issues/1985
+// #r "netstandard" // Temp fix for https://github.com/fsharp/FAKE/issues/1985
 #endif
 
 open System
@@ -31,10 +31,11 @@ let run project args =
         { opts with
             Configuration = DotNet.BuildConfiguration.Release })
 
-    let res = DotNet.exec (fun opts -> { opts with RedirectOutput = true }) "run" ("-p " + project + " " + args)
+    for framework in ["netcoreapp3.1"; "net5.0"] do
+        let res = DotNet.exec (fun opts -> { opts with RedirectOutput = true }) "run" ("-f " + framework + " -p " + project + " " + args)
 
-    if not res.OK then
-        failwithf "Process failed with code %d" res.ExitCode
+        if not res.OK then
+            failwithf "Process failed with code %d" res.ExitCode
 
 let test proj (args, baseLineOutput) =
     Trace.traceImportant <| sprintf "Running '%s' with args '%s'" proj args

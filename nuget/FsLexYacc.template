@@ -14,6 +14,8 @@ tags
 files
   ../src/FsLex/bin/Release/netcoreapp3.1/publish ==> build/fslex/netcoreapp3.1
   ../src/FsYacc/bin/Release/netcoreapp3.1/publish ==> build/fsyacc/netcoreapp3.1
+  ../src/FsLex/bin/Release/net5.0/publish ==> build/fslex/net5.0
+  ../src/FsYacc/bin/Release/net5.0/publish ==> build/fsyacc/net5.0
   ../src/FsLexYacc.Build.Tasks/FsLexYacc.targets ==> build
   ../src/FsLexYacc.Runtime/Lexing.fsi ==> src/fslex
   ../src/FsLexYacc.Runtime/Lexing.fs ==> src/fslex
